@@ -10,7 +10,7 @@
 #define SCK  18   // D18
 
 // ---------- Receiver MAC (replace with your receiver's) ----------
-uint8_t peerMAC[] = { 0x88,0x13,0xbf,0x00,0x24,0x34 };  // <--- put receiver MAC here
+uint8_t peerMAC[] = {  };  // <--- put receiver MAC here
 
 // Payload
 typedef struct __attribute__((packed)) {
