@@ -33,28 +33,38 @@ A dual-mode embedded robotic car that can be controlled using a touch-based inte
 
 ---
 
-## 🔧 Technical Implementation
+This project includes three main firmware components:
 
-### Touch Input Flow
+---
 
-1. Touchpad → TSC2046 digitizes X/Y coordinates  
-2. ESP32 reads touch data using SPI  
-3. ESP-NOW transmits X/Y coordinates wirelessly to the car  
-4. Receiving ESP32 forwards data to STM32 via I²C  
-5. STM32 maps coordinates to:
-   - Forward  
-   - Backward  
-   - Left  
-   - Right  
-   - Stop  
+### **1️⃣ STM32 Main Firmware (`STM32_Main/`)**
+Runs on the STM32F401RE and handles:
+- I²C communication with ESP32  
+- Touch command decoding  
+- PWM motor control  
+- Ultrasonic sensing (front/left/right)  
+- Mode switching + UART output  
 
-### Autonomous Mode Logic
+---
 
-- STM32 polls all three ultrasonic sensors (front, left, right)  
-- Implements timeout handling + multiple echo validation  
-- Stops all motors when any distance < 30 cm threshold  
-- Sends distance readings periodically over UART for monitoring  
+### **2️⃣ ESP32 Trackpad Firmware (`ESP32_Trackpad/`)**
+Runs on the handheld controller and handles:
+- Reading touchpad X/Y via TSC2046 (SPI)  
+- Filtering and packaging coordinates  
+- Sending data to the car using **ESP-NOW**  
 
+---
+
+### **3️⃣ ESP32 Car Firmware (`ESP32_to_STM32/`)**
+Runs on the car ESP32 and handles:
+- Receiving ESP-NOW touch packets  
+- Validating/unpacking data  
+- Forwarding coordinates to STM32 via **I²C**  
+
+---
+
+## 📁 Media
+All diagrams, wiring layouts, and demo images are stored in the `Media/` folder for quick reference and visualization.
 
 
 
