@@ -1,5 +1,5 @@
 
-# STM32-Based-Auto-Parking-Car
+# ESP32–STM32 Wireless Touch-Controlled Car with Obstacle Detection
 
 A dual-mode embedded robotic car that can be controlled using a touch-based interface and can switch into an autonomous mode for real-time obstacle awareness.
 
